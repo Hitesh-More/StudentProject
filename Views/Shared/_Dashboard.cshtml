@@ -1,0 +1,170 @@
+﻿@*@if (Request.IsAuthenticated)*@
+@if (Session["EmailInfo"] != null)
+{
+    using (Html.BeginForm("UserLogOut", "UserLogOut", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        if (Session["RoleId"].ToString() == "1")
+        {
+            <div class="dropdown">
+                <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
+                    Admin
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Dashboard", "Dashboard", "SuperAdmin", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("All Admin", "AllAdmin", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Teacher", "AllTeacher", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Student", "AllStudent", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All SuperAdmin", "AllSuperAdmin", "GetAllUser")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Add Subject", "AddSubject", "SuperAdmin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Add Course", "AddCourse", "SuperAdmin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Subject and Teacher", "SubjectTeacher")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Add New User", "CreateUser", "Default")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Request Pending", "Index", "Default")
+                    </li>
+
+                </ul>
+            </div>
+        }
+        else
+                if (Session["RoleId"].ToString() == "2")
+        {
+            <div class="dropdown">
+                <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
+                    Teacher
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Dashboard", "Dashboard", "Teacher", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("My Student", "MyStudent", "Teacher", new { id = Session["UserId"] })
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("All Teacher", "AllTeacher", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Student", "AllStudent", "GetAllUser")
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+                    if (Session["RoleId"].ToString() == "3")
+        {
+            <div class="dropdown">
+                <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
+                    Student
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Dashboard", "Dashboard", "Student", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("All Teacher", "AllTeacher", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Student", "AllStudent", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Admin", "AllAdmin", "GetAllUser")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("My Subjects", "MySubject", "Student")
+                    </li>
+                    <li>
+                        @Html.ActionLink("My Teachers", "MyTeacher", "Student")
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+                    if (Session["RoleId"].ToString() == "4")
+        {
+            <div class="dropdown">
+                <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">
+                    SuperAdmin
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Dashboard", "Dashboard", "Default", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("All Admin", "AllAdmin", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Teacher", "AllTeacher", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Student", "AllStudent", "GetAllUser")
+                    </li>
+                    <li>
+                        @Html.ActionLink("All SuperAdmin", "AllSuperAdmin", "GetAllUser")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Add Subject", "AddSubject", "SuperAdmin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Add Course", "AddCourse", "SuperAdmin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Subject and Teacher", "SubjectTeacher")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Add New User", "CreateUser", "Default")
+                    </li>
+                    <li class="divider" />
+                    <li>
+                        @Html.ActionLink("Request Pending", "Index", "Default")
+                    </li>
+                </ul>
+            </div>
+
+        }
+    }
+
+}
+<style>
+    .dropdown {
+        margin-top: 5px;
+        background: transparent;
+        border: none;
+        color: #9d9d9d;
+    }
+</style>
+

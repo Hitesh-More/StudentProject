@@ -1,0 +1,53 @@
+﻿
+@if (Session["EmailInfo"] != null)
+{
+    @Html.Display("Email", Session["EmailInfo"].ToString(), new { @class = "form-control" })
+    <h4>Hello @Session["EmailInfo"].ToString()</h4>
+
+    <style type="text/css">
+        .btn {
+            
+            padding: 10px;
+            margin-bottom: auto;
+            margin-top: auto;
+        }
+    </style>
+   <center><img src="~/Content/ABC.jpg" class="img-fluid" alt="Cinque Terre" /></center>
+    @*if (Convert.ToInt32(Session["RoleId"]) == 1)
+        {
+            //Html.RenderPartial("Dashboard", "SuperAdmin");
+            <div class="container-fluid">
+                <center><a href="/StudentProject/SuperAdmin/Dashboard">  <img src="~/Content/Dashboard.png" class="img-fluid" alt="Cinque Terre" /></a></center>
+            </div>
+            // @Html.ActionLink("Dashboard", "Dashboard","SuperAdmin")
+        }
+        else if (Convert.ToInt32(Session["RoleId"]) == 2)
+        {
+            //Html.RenderPartial("Dashboard", "Teacher");
+            <div class="container-fluid">
+                <center><a href="/StudentProject/Teacher/Dashboard">  <img src="~/Content/Dashboard.png" class="img-fluid" alt="Cinque Terre" /></a></center>
+            </div>
+            // @Html.ActionLink("Dashboard", "Dashboard", "Teacher")
+        }
+        else if (Convert.ToInt32(Session["RoleId"]) == 3)
+        {
+            //Html.RenderPartial("Dashboard", "Student");
+            <div class="container-fluid">
+                <center><a href="/StudentProject/Student/Dashboard">  <img src="~/Content/Dashboard.png" class="img-fluid" alt="Cinque Terre" /></a></center>
+            </div>
+            //@Html.ActionLink("Dashboard", "Dashboard", "Student")
+        }
+        else if (Convert.ToInt32(Session["RoleId"]) == 4)
+        {
+            //Html.RenderPartial("Dashboard", "Default");
+            <div class="container-fluid">
+                <center><a href="/StudentProject/Student/Dashboard">  <img src="~/Content/Dashboard.png" class="img-fluid" alt="Cinque Terre" /></a></center>
+            </div>
+            //@Html.ActionLink("Dashboard", "Dashboard", "Student")
+        }*@
+
+
+
+
+}
+

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+ @if(Session[""]==null)
+ { 
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Harward School", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @*<img src="@Url.Action("UserPhotos", "Home")" height="48" width="48" />*@
+
+                    </li>
+
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.Partial("_Dashboard")</li>
+                    @*<li>hllo @Html.Partial("_AdminPartial")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+
+            </div>
+        </div>
+    </div>
+ }
+    
+
+    <ul> @*<li>@Html.ActionLink("My Profile", "Index", "Courses")</li>*@</ul>
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <hr />
+        <footer class="footer navbar-fixed-bottom ">
+            <p class="footer navbar navbar-fixed-bottom">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+        color: white;
+        text-align: center;
+    }
+   
+</style>

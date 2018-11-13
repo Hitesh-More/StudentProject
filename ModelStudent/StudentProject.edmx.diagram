@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="45fce7c0d30c4540a9b5146db85526db" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentProjectModel.City" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.Country" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.Course" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.Role" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.State" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.Subject" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.SubjectInCourse" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentProjectModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="StudentProjectModel.FK__City__StateId__208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentProjectModel.FK__State__CountryId__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentProjectModel.FK_SubjectInCourse_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentProjectModel.FK_SubjectInCourse_Subject" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StudentProjectModel.Address" Width="1.5" PointX="5.25" PointY="13.75" />
+        <AssociationConnector Association="StudentProjectModel.FK_Address_City" />
+        <AssociationConnector Association="StudentProjectModel.FK_Address_State" />
+        <AssociationConnector Association="StudentProjectModel.FK_Address_State1" />
+        <EntityTypeShape EntityType="StudentProjectModel.UserInRole" Width="1.5" PointX="9.75" PointY="3.875" />
+        <AssociationConnector Association="StudentProjectModel.FK__UserInRol__RoleI__34C8D9D1" />
+        <EntityTypeShape EntityType="StudentProjectModel.TeacherInSubject" Width="1.5" PointX="9.75" PointY="9.375" />
+        <AssociationConnector Association="StudentProjectModel.FK_TeacherInSubject_Subject" />
+        <EntityTypeShape EntityType="StudentProjectModel.UserRegistration" Width="1.5" PointX="7.5" PointY="13.125" />
+        <AssociationConnector Association="StudentProjectModel.FK__UserRegis__Addre__498EEC8D" />
+        <AssociationConnector Association="StudentProjectModel.FK__TeacherIn__UserI__5535A963" />
+        <AssociationConnector Association="StudentProjectModel.FK__UserInRol__UserI__0D44F85C" />
+        <EntityTypeShape EntityType="StudentProjectModel.SecurityTable" Width="1.5" PointX="9.75" PointY="14.5" />
+        <AssociationConnector Association="StudentProjectModel.FK_SecurityTable_UserRegistration" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

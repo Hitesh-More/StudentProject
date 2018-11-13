@@ -1,0 +1,39 @@
+﻿@model StudentProject.Models.AddSubjectViewModel
+@{
+    ViewBag.Title = "Add Subject";
+}
+<div>
+    <h2>Add subject</h2>
+    <div class="w3-container w3-teal">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="w3-container success"><h4></h4></div>
+
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @id = "Subject", @class = "form-control", @placeholder = "Subject" } })
+                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                               <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" onsubmit="alert('Subject Created')"class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+   
+</div>

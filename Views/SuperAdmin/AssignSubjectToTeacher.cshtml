@@ -1,0 +1,56 @@
+﻿@model StudentProject.Models.AssignSubjectToTeacher
+
+@{
+    ViewBag.Title = "AssignSubjectToTeacher";
+}
+
+<h2>AssignSubjectToTeacher</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AssignSubjectToTeacher</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+
+    
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubjectList,htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+
+                @Html.DropDownListFor(model => model.SubjectId,Model.SubjectList.Select(item => new SelectListItem
+           {
+               Value = item.SubjectId.ToString(),
+               Text = item.SubjectName.ToString()
+
+           }), "---Select Subject--", new { id = "ddlCourse" })
+                @Html.ValidationMessageFor(model => model.SubjectList, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

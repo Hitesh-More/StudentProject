@@ -1,0 +1,17 @@
+﻿
+<table class="nav navbar-nav navbar-left bg-primary caption">
+    
+    
+    <th>
+        <td><button type="button" value="All Teacher" onclick="location.href='@Url.Action("AllTeacher", "GetAllUser")'" class="btn btn-primary" />All Teacher</td>
+    </th>
+    <th>
+        <td><button type="button" value="All Student" onclick="location.href='@Url.Action("AllStudent", "GetAllUser")'" class="btn btn-primary" />All Student</td>
+    </th>
+    <th>
+        <td><button type="button" value="MyStudent" onclick="location.href='@Url.Action("MyStudent","Teacher",new { id=Session["UserId"]})'" class="btn btn-primary" />My Student</td>
+    </th>
+  
+</table>
+
+

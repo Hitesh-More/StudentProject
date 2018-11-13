@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__208CD6FA" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="Addresses" Relationship="StudentProjectModel.FK_Address_City" FromRole="City" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="States" Relationship="Self.FK__State__CountryId__1BC821DD" FromRole="Country" ToRole="State" />
+    <NavigationProperty Name="Addresses" Relationship="StudentProjectModel.FK_Address_State" FromRole="Country" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SubjectInCourses" Relationship="Self.FK_SubjectInCourse_Course" FromRole="Course" ToRole="SubjectInCourse" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserInRoles" Relationship="StudentProjectModel.FK__UserInRol__RoleI__34C8D9D1" FromRole="Role" ToRole="UserInRole" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__208CD6FA" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__1BC821DD" FromRole="State" ToRole="Country" />
+    <NavigationProperty Name="Addresses" Relationship="StudentProjectModel.FK_Address_State1" FromRole="State" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubjectInCourses" Relationship="Self.FK_SubjectInCourse_Subject" FromRole="Subject" ToRole="SubjectInCourse" />
+    <NavigationProperty Name="TeacherInSubjects" Relationship="StudentProjectModel.FK_TeacherInSubject_Subject" FromRole="Subject" ToRole="TeacherInSubject" />
+  </EntityType>
+  <EntityType Name="SubjectInCourse">
+    <Key>
+      <PropertyRef Name="SubjectInCourseId" />
+    </Key>
+    <Property Name="SubjectInCourseId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_SubjectInCourse_Course" FromRole="SubjectInCourse" ToRole="Course" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_SubjectInCourse_Subject" FromRole="SubjectInCourse" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__City__StateId__208CD6FA">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__State__CountryId__1BC821DD">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="State" Type="Self.State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="State">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectInCourse_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="SubjectInCourse" Type="Self.SubjectInCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="SubjectInCourse">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectInCourse_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="SubjectInCourse" Type="Self.SubjectInCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="SubjectInCourse">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StudentProjectEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <EntitySet Name="SubjectInCourses" EntityType="Self.SubjectInCourse" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__City__StateId__208CD6FA" Association="Self.FK__City__StateId__208CD6FA">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__State__CountryId__1BC821DD" Association="Self.FK__State__CountryId__1BC821DD">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="State" EntitySet="States" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectInCourse_Course" Association="Self.FK_SubjectInCourse_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="SubjectInCourse" EntitySet="SubjectInCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectInCourse_Subject" Association="Self.FK_SubjectInCourse_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="SubjectInCourse" EntitySet="SubjectInCourses" />
+    </AssociationSet>
+    <EntitySet Name="Addresses" EntityType="StudentProjectModel.Address" />
+    <AssociationSet Name="FK_Address_City" Association="StudentProjectModel.FK_Address_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_State" Association="StudentProjectModel.FK_Address_State">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_State1" Association="StudentProjectModel.FK_Address_State1">
+      <End Role="State" EntitySet="States" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <EntitySet Name="UserInRoles" EntityType="StudentProjectModel.UserInRole" />
+    <AssociationSet Name="FK__UserInRol__RoleI__34C8D9D1" Association="StudentProjectModel.FK__UserInRol__RoleI__34C8D9D1">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserInRole" EntitySet="UserInRoles" />
+    </AssociationSet>
+    <EntitySet Name="TeacherInSubjects" EntityType="StudentProjectModel.TeacherInSubject" />
+    <AssociationSet Name="FK_TeacherInSubject_Subject" Association="StudentProjectModel.FK_TeacherInSubject_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="TeacherInSubject" EntitySet="TeacherInSubjects" />
+    </AssociationSet>
+    <EntitySet Name="UserRegistrations" EntityType="StudentProjectModel.UserRegistration" />
+    <AssociationSet Name="FK__UserRegis__Addre__498EEC8D" Association="StudentProjectModel.FK__UserRegis__Addre__498EEC8D">
+      <End Role="Address" EntitySet="Addresses" />
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TeacherIn__UserI__5535A963" Association="StudentProjectModel.FK__TeacherIn__UserI__5535A963">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="TeacherInSubject" EntitySet="TeacherInSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserInRol__UserI__0D44F85C" Association="StudentProjectModel.FK__UserInRol__UserI__0D44F85C">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="UserInRole" EntitySet="UserInRoles" />
+    </AssociationSet>
+    <EntitySet Name="SecurityTables" EntityType="StudentProjectModel.SecurityTable" />
+    <AssociationSet Name="FK_SecurityTable_UserRegistration" Association="StudentProjectModel.FK_SecurityTable_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="SecurityTable" EntitySet="SecurityTables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CurrentAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PermanentAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="StateId" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="StudentProjectModel.FK_Address_City" FromRole="Address" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="StudentProjectModel.FK_Address_State" FromRole="Address" ToRole="Country" />
+    <NavigationProperty Name="State" Relationship="StudentProjectModel.FK_Address_State1" FromRole="Address" ToRole="State" />
+    <NavigationProperty Name="UserRegistrations" Relationship="StudentProjectModel.FK__UserRegis__Addre__498EEC8D" FromRole="Address" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK_Address_City">
+    <End Type="StudentProjectModel.City" Role="City" Multiplicity="1" />
+    <End Type="StudentProjectModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_State">
+    <End Type="StudentProjectModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="StudentProjectModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_State1">
+    <End Type="StudentProjectModel.State" Role="State" Multiplicity="1" />
+    <End Type="StudentProjectModel.Address" Role="Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserInRole">
+    <Key>
+      <PropertyRef Name="UserInRolesId" />
+    </Key>
+    <Property Name="UserInRolesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="StudentProjectModel.FK__UserInRol__RoleI__34C8D9D1" FromRole="UserInRole" ToRole="Role" />
+    <NavigationProperty Name="UserRegistration" Relationship="StudentProjectModel.FK__UserInRol__UserI__0D44F85C" FromRole="UserInRole" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK__UserInRol__RoleI__34C8D9D1">
+    <End Type="StudentProjectModel.Role" Role="Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="StudentProjectModel.UserInRole" Role="UserInRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserInRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TeacherInSubject">
+    <Key>
+      <PropertyRef Name="TeacherInSubjectId" />
+    </Key>
+    <Property Name="TeacherInSubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="SubjectId" Type="Int32" />
+    <NavigationProperty Name="Subject" Relationship="StudentProjectModel.FK_TeacherInSubject_Subject" FromRole="TeacherInSubject" ToRole="Subject" />
+    <NavigationProperty Name="UserRegistration" Relationship="StudentProjectModel.FK__TeacherIn__UserI__5535A963" FromRole="TeacherInSubject" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK_TeacherInSubject_Subject">
+    <End Type="StudentProjectModel.Subject" Role="Subject" Multiplicity="0..1" />
+    <End Type="StudentProjectModel.TeacherInSubject" Role="TeacherInSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="TeacherInSubject">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Hobbies" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+    <Property Name="DateModified" Type="DateTimeOffset" Precision="7" />
+    <Property Name="CourseId" Type="Int32" />
+    <Property Name="AddressId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="StudentProjectModel.FK__UserRegis__Addre__498EEC8D" FromRole="UserRegistration" ToRole="Address" />
+    <NavigationProperty Name="TeacherInSubjects" Relationship="StudentProjectModel.FK__TeacherIn__UserI__5535A963" FromRole="UserRegistration" ToRole="TeacherInSubject" />
+    <NavigationProperty Name="UserInRoles" Relationship="StudentProjectModel.FK__UserInRol__UserI__0D44F85C" FromRole="UserRegistration" ToRole="UserInRole" />
+    <NavigationProperty Name="SecurityTables" Relationship="StudentProjectModel.FK_SecurityTable_UserRegistration" FromRole="UserRegistration" ToRole="SecurityTable" />
+  </EntityType>
+  <Association Name="FK__UserRegis__Addre__498EEC8D">
+    <End Type="StudentProjectModel.Address" Role="Address" Multiplicity="1" />
+    <End Type="StudentProjectModel.UserRegistration" Role="UserRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="AddressId" />
+      </Principal>
+      <Dependent Role="UserRegistration">
+        <PropertyRef Name="AddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TeacherIn__UserI__5535A963">
+    <End Type="StudentProjectModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="StudentProjectModel.TeacherInSubject" Role="TeacherInSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="TeacherInSubject">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserInRol__UserI__0D44F85C">
+    <End Type="StudentProjectModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="StudentProjectModel.UserInRole" Role="UserInRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserInRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SecurityTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="SecurityQuestion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserRegistration" Relationship="StudentProjectModel.FK_SecurityTable_UserRegistration" FromRole="SecurityTable" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK_SecurityTable_UserRegistration">
+    <End Type="StudentProjectModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="StudentProjectModel.SecurityTable" Role="SecurityTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SecurityTable">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

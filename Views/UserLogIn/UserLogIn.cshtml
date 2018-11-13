@@ -1,0 +1,130 @@
+﻿@model StudentProject.Models.UserLogInViewModel
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div>
+    <h2>Login</h2>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@using (Html.BeginForm("UserLogIn", "UserLogIn", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-horizontal container border border-primary">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <h4></h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, Model.Email, new { htmlAttributes = new { @id = "txtEmail", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @id = "txtPassword", @class = "form-control", placeholder = "Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-md-offset-1 col-md-1">
+                    @Html.ActionLink("Create Account", "CreateUser", "Default","",new { @class = "btn btn-success" })
+                </div>
+                <div class="col-md-offset-1 col-md-1">
+                    @*@Html.ActionLink("LogIn", "UserLogIn", "UserLogIn", new { @class = "btn btn-success" })*@
+                    <input type="submit" value="Login" class="btn btn-success" />
+                </div>
+            </div>
+
+            <div>
+                @Html.ActionLink("Forgot Password ?", "ForgotPassword", "UserLogIn")
+            </div>
+            
+
+        </div>
+
+        <div class="col-md-4">
+            <div>
+
+                <img src="~/Content/img3.jpg" class="img-rounded" alt="Cinque Terre" />
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+}
+<style>
+    .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+        width: 120px;
+    }
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+        border: 1px solid #333;
+        border-radius: 4px;
+    }
+    </style>
+<hr/>
+@*<div class="container-fluid">
+
+    <div>
+        <center>
+            <a href="/StudentProject/Default/CreateUser">
+                <img src="~/Content/images.jpg" class="img-fluid btn-md" alt="Cinque Terre" />
+            </a>
+        </center>
+    </div>
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        
+        var value = $.cookie("userInfo");
+        alert(value);
+
+    @*@{ 
+        if (Request.Cookies["userInfo"] != null)
+        {
+            var a = Server.HtmlEncode(Request.Cookies["userInfo"]["userName"]);
+
+            var b =Server.HtmlEncode(Request.Cookies["userInfo"]["lastVisit"]);
+        }
+    }*@
+    });
+</script>
+

@@ -1,0 +1,49 @@
+﻿
+@if (Session["EmailInfo"] != null)
+{
+    @Html.Display("Email", Session["EmailInfo"].ToString(), new { @class = "form-control" })
+    <h4>Hello @Session["EmailInfo"].ToString()</h4>
+
+    <style type="text/css">
+        .btn {
+            background: blue;
+            color: #fff;
+            padding: 10px;
+        }   margin ::after 
+    </style>
+
+
+   if (Convert.ToInt32(Session["RoleId"]) == 4)
+    { <table class="nav navbar-nav navbar-left bg-primary caption">
+    <tr>
+        <td> <button type="button" value="All Admin" onclick="location.href='@Url.Action("AllAdmin", "GetAllUser")'" class="btn btn-primary" />All Admin</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="Create new user" onclick="location.href='@Url.Action("CreateUser", "SuperAdmin")'" class="btn btn-primary" />Create new user</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="All Teacher" onclick="location.href='@Url.Action("AllTeacher", "GetAllUser")'" class="btn btn-primary" />All Teacher</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="All Student" onclick="location.href='@Url.Action("AllStudent", "GetAllUser")'" class="btn btn-primary" />All Student</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="All Super Admin" onclick="location.href='@Url.Action("AllSuperAdmin", "GetAllUser")'" class="btn btn-primary" />All Super Admin</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="All Student" onclick="location.href='@Url.Action("AddSubject", "SuperAdmin")'" class="btn btn-primary" />Add Subject</td>
+    </tr>
+    <tr>
+        <td><button type="button" value="All Super Admin" onclick="location.href='@Url.Action("AddCourse", "SuperAdmin")'" class="btn btn-primary" />Add Course</td>
+    </tr>
+    @*<tr>
+        <td><button type="button" value="All Super Admin" onclick="location.href='@Url.Action("AssignSubjectToTeacher", "SuperAdmin",Session["UserId"])'" class="btn btn-primary" />Assign subject to teacher</td>
+    </tr>*@
+</table>
+    }
+}
+else
+{
+        @Html.ActionLink("UserLogOut", "UserLogOut")
+    }
+

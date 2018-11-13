@@ -1,0 +1,246 @@
+﻿@model IEnumerable<StudentProject.Models.UserRegistrationViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage User</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "CreateUser", "Default")
+</p>*@
+
+<table>
+    <tr>
+        <td>
+        <div>
+                @*@using (Html.BeginForm("Index", "Default", FormMethod.Post))
+                {
+                    @Html.Label("Search")
+                    @Html.TextBox("searching")
+
+                    <input type="submit" value="submit" />
+                }*@
+
+        </div>
+        </td>
+        <td>
+            <p>
+                @*@if (Convert.ToInt32(Session["RoleId"]) == 1)
+                {
+                    //Html.RenderPartial("Dashboard", "SuperAdmin");
+                    @Html.ActionLink("Dashboard", "Dashboard", "SuperAdmin")
+                }
+                else if (Convert.ToInt32(Session["RoleId"]) == 2)
+                {
+                    //Html.RenderPartial("Dashboard", "Teacher");
+                    @Html.ActionLink("Dashboard", "Dashboard", "Teacher")
+                }
+                else if (Convert.ToInt32(Session["RoleId"]) == 3)
+                {
+                    //Html.RenderPartial("Dashboard", "Student");
+                    @Html.ActionLink("Dashboard", "Dashboard", "Student")
+                }
+                else if (Convert.ToInt32(Session["RoleId"]) == 4)
+                {
+                    //Html.RenderPartial("Dashboard", "Default");
+                    @Html.ActionLink("Dashboard", "Dashboard", "Default")
+                }*@
+            </p>
+        </td>
+    </tr>
+    </table>
+
+
+
+
+            <table class="table table-condensed table-striped  table-bordered table-hover">
+                <tr>
+                    <th>
+                        @Html.Label("First Name")
+                    </th>
+                    <th>
+                        @Html.Label("Last Name")
+                    </th>
+                    <th>
+                        @Html.Label("Date Of Birth")
+                    </th>
+                    <th>
+                        @Html.Label("Hobbies")
+                    </th>
+                    <th>
+                        @Html.Label("Email")
+                    </th>
+                    @*<th>
+            @Html.Label("Password")
+        </th>*@
+                    <th>
+                        @Html.Label("Gender")
+                    </th>
+                    <th>
+                        @Html.Label("IsVerified")
+                    </th>
+                    <th>
+                        @Html.Label("IsActive")
+                    </th>
+
+                    <th>
+                        @Html.Label("city")
+                    </th>
+                    <th>
+                        @Html.Label("Country")
+                    </th>
+                    <th>
+                        @Html.Label("State")
+                    </th>
+                    <th>
+                        @Html.Label("Current Address")
+                    </th>
+                    <th>
+                        @Html.Label("permanent address")
+                    </th>
+                    <th>
+                        @Html.Label("zipcode")
+                    </th>
+                    <th>
+                        @Html.Label("Role Name")
+                    </th>
+                    <th>
+                        @Html.Label("Course")
+                    </th>
+                    <th>
+                        @Html.Label("Operations")
+                    </th>
+                    <th>
+                        @Html.Label("Verify User")
+                    </th>
+                    <th>
+                        @Html.Label("Activate User")
+                    </th>
+                </tr>
+                @*<script>
+                    var value = "a".toLowerCase();
+                    var lastName = document.getElementById('lstname').value;
+                    var searchedItems = item.toLowerCase().filter(data => {
+                        var name = data.Name.includes(value);
+                        var lName = data.lastName.incudes(lastName);
+                    });
+                    
+                </script>*@
+                @foreach (var item in Model)
+                {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfBirth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hobbies)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsVerified)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CountryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PermanentAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Default", new { id = item.UserId }, null) |
+                        @Html.ActionLink("Delete", "DeleteConfirmed", "Default", new { UserId = item.UserId }, null)
+                        @*@Html.ActionLink("CreateNewUser", "CreateUser", "SuperAdmin")*@
+
+                        @*@Html.ActionLink(“ActionLinkName”, “ActionName”, “ControllerName”)*@
+
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Verify User", "IsVerified", "Default", new { id = item.UserId }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Activate User", "IsActive", "Default", new { id = item.UserId }, null)
+                    </td>
+                </tr>
+                }
+
+            </table>
+
+            @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+
+
+            <!--this is for country, state and city-->
+            <script>
+
+                $(document).ready(function () {
+
+                    $("#ddlState").change(function () {
+
+                        var id = $(this).val();
+                        alert(id);
+                        $("#ddlState").empty();
+                        $.getJSON("GetState", { CountryId: id }, function (data) {
+                            var v = "<option>..Select State..</option>";
+                            $.each(data, function (i, v1) {
+                                v += "<option Value=" + v1.Value + ">" + v1.Text + "</option>";
+                            }
+                            );
+                            $("#state").html(v);
+                        });
+                    });
+
+                    $("#ddlState").change(function () {
+
+                        var id = $(this).val();
+                        $("#city").empty();
+                        $.getJSON("GetCities", { StateId: id }, function (data) {
+
+                            var v = "<option>..Select City..</option>";
+                            $.each(data, function (i, v1) {
+                                v += "<option Value=" + v1.Value + ">" + v1.Text + "</option>";
+
+                            });
+                            $("#ddlCity").html(v);
+                        });
+                    });
+
+                });
+            </script>

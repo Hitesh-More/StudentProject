@@ -1,0 +1,43 @@
+﻿
+@if (Session["EmailInfo"] != null)
+{
+    @Html.Display("Email", Session["EmailInfo"].ToString(), new { @class = "form-control" })
+    <h4>Hello @Session["EmailInfo"].ToString()</h4>
+
+    <style type="text/css">
+        .btn {
+            background: blue;
+            color: #fff;
+            padding: 10px;
+        }
+    </style>
+
+    <div>
+       @*@if (Convert.ToInt32(Session["RoleId"]) == 3)
+     {*@ <table>
+            <tr>
+                <td> <button type="button" value="All Users" onclick="location.href='@Url.Action("AllUser", "GetAllUser")'" class="btn btn-primary" />All User</td>
+            </tr>
+            <tr>
+                <td><button type="button" value="Admin" onclick="location.href='@Url.Action("MySubject", "Student")'" class="btn btn-primary" />My Subjects</td>
+            </tr>
+            <tr>
+                <td><button type="button" value="Teacher" onclick="location.href='@Url.Action("AllTeacher", "GetAllUser")'" class="btn btn-primary" />All Teacher</td>
+            </tr>
+            <tr>
+                <td><button type="button" value="Student" onclick="location.href='@Url.Action("AllStudent", "GetAllUser")'" class="btn btn-primary" />All Student</td>
+            </tr>
+            <tr>
+                <td><button type="button" value="Student" onclick="location.href='@Url.Action("MyTeacher", "Student", new { id = Session["RoleId"] })'" class="btn btn-primary" />My Teacher</td>
+            </tr>
+    
+      </table>
+ </div>
+    //}
+}
+@*else
+{
+        @Html.ActionLink("UserLogOut", "UserLogOut")
+    }*@
+
+

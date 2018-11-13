@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "_LoginLayout";
+   
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+   
+    <div class="container body-content">
+        @RenderBody()
+
+        <hr />
+        <footer class="footer navbar-fixed-bottom ">
+            <p class="footer navbar navbar-fixed-bottom">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+        color: white;
+        text-align: center;
+    }
+
+    
+</style>

@@ -1,0 +1,54 @@
+﻿@model StudentProject.Models.IsVerifiedByAdmin
+@{
+    ViewBag.Title = "Add Course";
+}
+<div>
+    <h2>IsVerified</h2>
+    <div class="w3-container w3-teal">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="w3-container success"><h4>Registration</h4></div>
+
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @id = "IsVerified", @class = "form-control", @placeholder = "Email" , @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsVerified, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(model => model.IsVerified, new { htmlAttributes = new { @id = "IsVerified", @class = "form-control", @placeholder = "Subject" } })
+                    @Html.ValidationMessageFor(model => model.IsVerified, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Verify"  class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+        }
+
+
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>
+
+

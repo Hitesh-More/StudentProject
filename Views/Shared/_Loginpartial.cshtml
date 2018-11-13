@@ -1,0 +1,53 @@
+﻿@*@if (Request.IsAuthenticated)*@
+@if (Session["EmailInfo"] != null)
+{
+    using (Html.BeginForm("UserLogOut", "UserLogOut", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @*<ul class="nav navbar-nav navbar-left">
+            @if (Session["RoleId"].ToString() == "1")
+            {
+                <li>
+                    @Html.ActionLink("Dashboard", "Dashboard", "SuperAdmin", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                </li>
+            }
+            else
+                if (Session["RoleId"].ToString() == "2")
+            {
+                <li>
+                    @Html.ActionLink("Dashboard", "Dashboard", "Teacher", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                </li>
+            }
+            else
+                if (Session["RoleId"].ToString() == "3")
+            {
+                <li>
+                    @Html.ActionLink("Dashboard", "Dashboard", "Student", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                </li>
+            }
+            else
+                if (Session["RoleId"].ToString() == "4")
+            {
+                <li>
+                    @Html.ActionLink("Dashboard", "Dashboard", "Default", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "Dashboard" })
+                </li>
+            }
+        </ul>*@
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(Session["EmailInfo"].ToString(), "MyProfile", "GetAllUser", new { Email = Convert.ToString(Session["EmailInfo"]) }, htmlAttributes: new { title = "User Profile" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+        </ul>
+    }
+
+}
+else
+{
+    @*<ul class="nav navbar-nav navbar-right">
+            <li class="btn">@Html.ActionLink("Register", "CreateUser", "Default", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li class=" btn">@Html.ActionLink("Log in", "UserLogIn", "UserLogIn", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>*@
+}
+    
